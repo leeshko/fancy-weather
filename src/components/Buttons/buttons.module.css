@@ -1,0 +1,50 @@
+.btnBlock {
+    display: flex;
+}
+
+.btnBlock select, 
+.updateBackground, 
+.fahr, 
+.cels {
+    height: 50px;
+    border-radius: 5px;
+    background: rgba(174, 181, 185, 0.5);
+    cursor: pointer;
+}
+
+.updateBackground {
+    width: 50px;
+    background-image: url(../../assets/update.png);
+    background-repeat: no-repeat;
+    align-items: center;
+    background-position: center;
+    margin-right: 10px;
+}
+
+.btnBlock select,
+.fahr, 
+.cels {
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btnBlock select {
+    width: 100px;
+    border: none;
+    margin-right: 10px;
+}
+
+.fahr, 
+.cels {
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    background: rgba(76, 82, 85, 0.4);
+}
