@@ -1,0 +1,14 @@
+.layer {
+    width: 90%;
+    height: 70%;
+    margin: auto 0 auto auto;
+    border-radius: 40px;
+    mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+  }
+
+  @media (max-width: 420px) {
+    .layer {
+      margin: 0;
+      width: 100%;
+    }
+  }

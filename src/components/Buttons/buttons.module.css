@@ -23,12 +23,14 @@
 
 .btnBlock select,
 .fahr, 
-.cels {
+.cels, 
+button {
     font-family: Montserrat;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 14px;
     text-align: center;
     vertical-align: middle;
+    color: white;
 }
 
 .btnBlock select {
@@ -45,6 +47,94 @@
     align-items: center;
 }
 
-.active {
+.fahrActive, 
+.celsActive {
+    width: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: rgba(76, 82, 85, 0.4);
+}
+
+.searchField {
+    height: 50px;
+    box-sizing: border-box;
+    border-style: none;
+    border-radius: 5px 0 0 5px;
+    background: rgba(76, 82, 85, 0.4);
+    color: white;
+    font-weight: 400;
+    outline: none;
+    padding-left: 20px;
+}
+
+.searchField:focus {
+    border-style: none;
+}
+
+.searchField::placeholder {
+    color: white;
+}
+
+.searchButton {
+    border-radius: 0 5px 5px 0;
+    background: rgba(174, 181, 185, 0.5);
+    width: 100px;
+    height: 50px;
+    border-style: none;
+}
+
+.searchButton:hover {
+    background: rgba(76, 82, 85, 0.4);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+@media (max-width: 810px) {
+    .searchBlock {
+      margin-top: 30px;
+    }
+}
+
+@media (max-width: 420px) {
+    .btnBlock {
+        justify-content: space-between;
+    }
+
+    .btnBlock select, 
+    .updateBackground, 
+    .fahr, 
+    .cels, 
+    .searchField, 
+    .searchButton {
+        height: 30px;   
+    }
+
+    .updateBackground, 
+    .fahr, 
+    .cels, 
+    .searchField, 
+    .searchButton {
+        width: 30px;   
+    }
+
+    .btnBlock select {
+        width: 60px;
+    }
+
+    .fahrActive, 
+    .celsActive {
+        width: 30px;
+        height: 30px;
+    }
+
+    .searchField {
+        width: 160px;
+        font-weight: 400;  
+    }
+
+    .searchButton {
+        width: 70px;
+    }
 }
