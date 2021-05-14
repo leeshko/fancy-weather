@@ -49,6 +49,10 @@
   font-size: 40px;
 }
 
+.nameOfDay {
+  font-size: 30px;
+}
+
 .mapBlock {
   display: flex;
   flex-direction: column;

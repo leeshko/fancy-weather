@@ -1,31 +1,36 @@
 import s from './buttons.module.css';
 import React from 'react';
+import { languages } from '../data';
 
 
-const Buttons = ({refreshBackground}) => {
+const Buttons = ({ refreshBackground, changeLang, lang, inputCity, searchInput, changeToCels, changeToFahr, showCelsius, setSearchedCity, takeGeoLocation }) => {
+    
+    const onEnterPress = (event) => {     
+        event.preventDefault();
+        setSearchedCity(event.target.form[0].defaultValue);
+        takeGeoLocation();
+    }
 
     return (
         <>
             <div className={s.btnBlock} >
                 <div className={s.updateBackground} onClick={refreshBackground}> </div>
 
-                <select>
+                <select onChange={changeLang}>
                     <option value="en">En</option>
                     <option value="ru">Ру</option>
                 </select>
 
-                <div className={s.fahr}> °F </div>
-                <div className={s.celsActive}> °C </div>
+                <div className={!showCelsius ? s.fahrActive : s.fahr} onClick={showCelsius ? changeToFahr : null}> °F </div>
+                <div className={showCelsius ? s.celsActive : s.cels} onClick={changeToCels}> °C </div>
             </div>
-
-            <div className={s.searchBlock}>
-                <input className={s.searchField} type="text" placeholder={'Search city'} >
-                </input>
-                <button className={s.searchButton}>SEARCH</button>
-            </div>
+            <form className={s.searchBlock} onClick={onEnterPress} >
+                <input className={s.searchField} type="text" value={inputCity} onChange={searchInput} placeholder={lang === 'en' ? languages.en.searchField : languages.ru.searchField } />
+                
+                <input className={s.searchButton} type="submit" value={lang === 'en' ? languages.en.searchBtn : languages.ru.searchBtn} />
+            </form>
         </>
     )
-
 }
 
 export default Buttons;
