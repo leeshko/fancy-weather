@@ -16,7 +16,7 @@ const Buttons = ({ refreshBackground, changeLang, lang, inputCity, searchInput, 
             <div className={s.btnBlock} >
                 <div className={s.updateBackground} onClick={refreshBackground}> </div>
 
-                <select onChange={changeLang}>
+                <select onChange={changeLang} value={lang}>
                     <option value="en">En</option>
                     <option value="ru">Ру</option>
                 </select>

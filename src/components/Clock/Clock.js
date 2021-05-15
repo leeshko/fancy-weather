@@ -10,9 +10,13 @@ const Clock = (props) => {
     
     const tick = (language, timezone) => {
         //  setInterval(() => {
-            let utcTime = (new Date(new Date().getTime() - timezone*1000));
-        console.log(new Date(+utcTime + timezone*10000))
-        setCurrentDate(new Date(+utcTime + timezone * 1000).toLocaleString(language, {
+            let utcTimeStamp = (Date.now() - timezone*1000);
+            console.log(new Date())
+            console.log(new Date(utcTimeStamp))
+            console.log(timezone)
+         
+
+        setCurrentDate(new Date(utcTimeStamp + timezone * 1000).toLocaleString(language, {
           
             weekday: 'short',
             day: '2-digit',

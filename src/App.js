@@ -2,7 +2,7 @@ import './App.css';
 import Buttons from './components/Buttons/Buttons';
 import Background from './components/background/Background';
 import InfoLayer from './components/InfoLayer/InfoLayer';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 let weatherApi = 'https://api.openweathermap.org/data/2.5/forecast?q=Москва&lang=en&units=metric&APPID=a9a3a62789de80865407c0452e9d1c27';
 
@@ -30,18 +30,16 @@ function App() {
   const [geocodingCityInRussian, setGeocodingCityInRussian] = useState('');
 
   //appLanguage  
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState(localStorage.lang || 'en');
 
-  //type Of Temperature (celsius, fahrengeit)
-  const [showCelsius, setShowCelsius] = useState(true);
-
+  
   // serched city 
   const [inputCity, setInputCity] = useState('');
   const [searchedCity, setSearchedCity] = useState('');
-
-  console.log(timezone)
-
-
+  
+  //type Of Temperature (celsius, fahrengeit)
+  const [showCelsius, setShowCelsius] = useState(localStorage.cels === 'true' || localStorage.cels === undefined);
+  console.log(localStorage.cels)
 
   const urlBackground = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0f15ff623f1198a1f7f52550f8c36057&tags=nature,spring,morning&tag_mode=all&extras=url_h&format=json&nojsoncallback=1';
 
@@ -60,7 +58,6 @@ function App() {
       .then(data => {
         let backgroundImg = (data.photos.photo[getRandomInt(0, data.photos.photo.length)].url_h !== undefined ? data.photos.photo[getRandomInt(0, data.photos.photo.length)].url_h : takeBackground());
         setImage(backgroundImg);
-        console.log('background', data)
       })
       .catch(() => { alert('background is not loaded') });
   }
@@ -104,24 +101,27 @@ function App() {
     takeGeoLocation();
   }, [])
 
-
   const changeLang = (e) => {
     setLang(e.target.value);
+    localStorage.setItem('lang', e.target.value);
   }
 
   const changeToFahr = (temp) => {
     setShowCelsius(false);
+    localStorage.setItem('cels', false);
     return (temp * 9 / 5) + 32;
   }
 
   const changeToCels = () => {
     setShowCelsius(true);
+    localStorage.setItem('cels', true);
   }
 
-  const searchInput = (e) => {
+  const searchInput = useCallback ((e) => {
+    console.log('ESECALLBACK')
     e.preventDefault();
     setInputCity(e.target.value);
-  }
+  }, [inputCity]);
 
   return (
     <div className='appLayer'>

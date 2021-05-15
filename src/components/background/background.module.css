@@ -7,5 +7,11 @@
     height: 100%;
     background-size: cover;
     background-color: teal;
+    animation: fade 5s linear;
+    animation-delay: 2.5s;
   }
-
+  @keyframes fade {
+    0% { opacity: 0 }
+    50% { opacity: 0 }
+    100% { opacity: 1 }
+  }
