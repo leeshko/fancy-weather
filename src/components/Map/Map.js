@@ -5,7 +5,6 @@ import {
 } from "react-yandex-maps";
 import st from "./map.module.css";
 
-
 const MapWidget = (props) => {
 
   const mapData = {

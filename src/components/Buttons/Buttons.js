@@ -1,14 +1,20 @@
 import s from './buttons.module.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { languages } from '../data';
 
 
-const Buttons = ({ refreshBackground, changeLang, lang, inputCity, searchInput, changeToCels, changeToFahr, showCelsius, setSearchedCity, takeGeoLocation }) => {
+const Buttons = ({ refreshBackground, changeLang, lang, searchInputValue,  changeToCels, changeToFahr, showCelsius }) => {
+
+    const [city, setCity] = useState('');
+
+    const searchInput = (event) => {
+        setCity(event.target.value);
+    }
     
-    const onEnterPress = (event) => {     
+    const onEnterPress = (event) => {
         event.preventDefault();
-        setSearchedCity(event.target.form[0].defaultValue);
-        takeGeoLocation();
+        searchInputValue(city);
+        setCity('');
     }
 
     return (
@@ -25,9 +31,19 @@ const Buttons = ({ refreshBackground, changeLang, lang, inputCity, searchInput, 
                 <div className={showCelsius ? s.celsActive : s.cels} onClick={changeToCels}> °C </div>
             </div>
             <form className={s.searchBlock} onClick={onEnterPress} >
-                <input className={s.searchField} type="text" value={inputCity} onChange={searchInput} placeholder={lang === 'en' ? languages.en.searchField : languages.ru.searchField } />
-                
-                <input className={s.searchButton} type="submit" value={lang === 'en' ? languages.en.searchBtn : languages.ru.searchBtn} />
+                <input
+                    className={s.searchField}
+                    type="text" 
+                    value={city}
+                    onChange={searchInput}
+                    placeholder={lang === 'en' ? languages.en.searchField : languages.ru.searchField}
+                />
+
+                <input
+                    className={s.searchButton}
+                    type="submit"
+                    value={lang === 'en' ? languages.en.searchBtn : languages.ru.searchBtn}  
+                />
             </form>
         </>
     )

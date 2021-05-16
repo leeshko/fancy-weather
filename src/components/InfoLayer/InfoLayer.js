@@ -6,6 +6,8 @@ import { languages } from '../data'
 
 const InfoLayer = (props) => {
 
+    const weatherValue = props.weatherData
+
     const changeToFahr = props.data.changeToFahr;
     const isShowingCels = props.data.showCelsius;
 
@@ -15,6 +17,7 @@ const InfoLayer = (props) => {
 
     const setIcons = (icon, weather, size) => {
         let skycons = new Skycons({ color: "white" });
+        skycons.remove('icon1');
         skycons.add(icon, Skycons[weather]);
         skycons.play();
         return (<canvas id={icon} width={size} height={size}> </canvas>)
