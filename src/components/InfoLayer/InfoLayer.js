@@ -2,11 +2,11 @@ import s from './infoLayer.module.css';
 import MapWidget from '../Map/Map';
 import { Skycons } from '../../assets/skycons';
 import Clock from '../Clock/Clock';
+import UsersLocation from './UsersLocation/UsersLocation';
+import CurrentInfoBlock from './CurrentInfoBlock/CurrentInfoBlock'
 import { languages } from '../data'
 
 const InfoLayer = (props) => {
-
-    const weatherValue = props.weatherData
 
     const changeToFahr = props.data.changeToFahr;
     const isShowingCels = props.data.showCelsius;
@@ -37,26 +37,31 @@ const InfoLayer = (props) => {
         <div className={s.mainBlock}>
             <div className={s.mainInfoBlock}>
                 <div>
-                    <h1> {lang === 'ru' ? props.data.geocodingCityInRussian : props.data.usersCity}, {setCountry(props.data.usersCountry)}</h1>
-                    <Clock lang={lang} timezone={props.data.timezone} />
+                    <UsersLocation
+                        lang={lang}
+                        geocodingCityInRussian={props.data.geocodingCityInRussian}
+                        usersCity={props.data.usersCity}
+                        usersCountry={props.data.usersCountry}
+                        setCountry={setCountry}
+                    />
+
+                    <Clock
+                        lang={lang}
+                        timezone={props.data.timezone}
+                    />
                 </div>
                 <div className={s.currentInfo}>
-                    <div className={s.currentTemperature}>
-                        {isShowingCels ? props.data.currentTemp.toFixed(0) + '°C' : changeToFahr(props.data.currentTemp).toFixed(0) + '°F'}
-
-                    </div>
-                    <div className={s.overcastBlock}>
-                        <div className={s.icon}>
-                            {setIcons('icon1', `${props.data.currentIcon}`, 128)}
-                        </div>
-                        <div className={s.overcast}>
-                            <div>{lang === 'en' ? languages.en.feelsLike : languages.ru.feelsLike}:
-                            {isShowingCels ? props.data.feelsLike.toFixed(0) + '°C' : changeToFahr(props.data.feelsLike).toFixed(0) + '°F'}
-                            </div>
-                            <div>{lang === 'en' ? languages.en.wind : languages.ru.wind}: {props.data.windSpeed} {lang === 'en' ? 'm/s' : 'м/с'}</div>
-                            <div>{lang === 'en' ? languages.en.humidity : languages.ru.humidity}: {props.data.humidity}%</div>
-                        </div>
-                    </div>
+                    <CurrentInfoBlock 
+                        currentTemp={props.data.currentTemp}
+                        changeToFahr={changeToFahr}
+                        isShowingCels={isShowingCels}
+                        setIcons={setIcons}
+                        currentIcon={props.data.currentIcon}
+                        lang={lang}
+                        feelsLike={props.data.feelsLike}
+                        windSpeed={props.data.windSpeed}
+                        humidity={props.data.humidity} 
+                    />   
                 </div>
 
                 <div className={s.nextDays}>

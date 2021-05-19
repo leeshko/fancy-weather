@@ -1,0 +1,22 @@
+.currentTemperature {
+  font-family: Montserrat;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  font-size: 170px;
+}
+
+@media (max-width: 810px) {
+
+    .currentTemperature {
+      font-size: 150px;
+    }
+}
+
+@media (max-width: 420px) {
+
+  .currentTemperature {
+    font-size: 100px;
+  }
+}
