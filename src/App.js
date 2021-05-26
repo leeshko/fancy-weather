@@ -1,6 +1,6 @@
 import './App.css';
 import Buttons from './components/Buttons/Buttons';
-import Background from './components/background/Background';
+import Background from './components/Background/Background';
 import InfoLayer from './components/InfoLayer/InfoLayer';
 import React, { useState, useEffect } from 'react';
 

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 
 const Background = ({image, takeBackground}) => {
 
-    
     useEffect(() => {
         takeBackground();
     // eslint-disable-next-line
