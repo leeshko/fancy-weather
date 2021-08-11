@@ -1,8 +1,18 @@
+import React, { useState, useEffect } from 'react';
+import { applyMiddleware, createStore, compose } from 'redux';
+import thunk from 'redux-thunk';
 import './App.css';
 import Buttons from './components/Buttons/Buttons';
 import Background from './components/background/Background';
 import InfoLayer from './components/InfoLayer/InfoLayer';
-import React, { useState, useEffect } from 'react';
+import { rootReducer } from './redux/rootReducer';
+
+const store = createStore(rootReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+)
 
 function App() {
 
