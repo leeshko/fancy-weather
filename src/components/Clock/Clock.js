@@ -1,18 +1,21 @@
 
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Clock = (props) => {
+
+    const language = useSelector((store) => store.switch.language);
 
     const [currentDate, setCurrentDate] = useState([]);
     
     let second;
 
     useEffect(() => {
-        tick(props.lang, props.timezone);
+        tick(language, props.timezone);
         return () => {
             clearInterval(second);
         };
-    }, [props.lang, props.timezone])
+    }, [language, props.timezone])
 
     const tick = (language) => {
         second = setInterval(() => {
